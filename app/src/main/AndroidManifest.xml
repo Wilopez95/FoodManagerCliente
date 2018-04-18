@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            android:screenOrientation="portrait" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +32,18 @@
         <activity
             android:name=".Productos"
             android:label="@string/title_activity_productos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Setings"
+            android:label="@string/title_activity_setings"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Historial"
+            android:label="@string/title_activity_historial"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Orden"
+            android:label="@string/title_activity_orden"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

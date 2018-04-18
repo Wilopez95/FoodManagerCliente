@@ -1,6 +1,7 @@
 package com.example.wilop.foodmanager_cliente;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,7 +53,7 @@ public class Singup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singup);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         register = findViewById(R.id.register);
         email = findViewById(R.id.email);
         name = findViewById(R.id.name);

@@ -3,6 +3,7 @@ package com.example.wilop.foodmanager_cliente;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,12 +14,16 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import java.util.ArrayList;
 
@@ -29,14 +34,22 @@ public class Productos extends AppCompatActivity {
     JSONArray Arrayproductos;
     //ArrayList<String> LProductos = new ArrayList<String>();
     ArrayList<String> pdt = new ArrayList<String>();
+    ArrayList<String> names = new ArrayList<String>();
+    ArrayList<String> prices = new ArrayList<String>();
     ArrayAdapter<String> arrayAdapter;
     ListView Lists_Productos;
     TextView category;
+    String name;
+    String brand;
+    String Description;
+    String price;
+    int c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_productos);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,8 +57,8 @@ public class Productos extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(),Orden.class);
+                startActivity(intent);
             }
         });
         Lists_Productos = findViewById(R.id.listProducts );
@@ -64,19 +77,52 @@ public class Productos extends AppCompatActivity {
 
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,pdt);
         Lists_Productos.setAdapter(arrayAdapter);
+
+        Lists_Productos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectiten(view, position);
+            }
+        });
     }
 
-    
+
+    public void selectiten(final View view, int j){
+        c=j;
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setTitle("Agregar")
+                .setMessage("¿Desea agregar "+names.get(c)+" al carrito?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getApplicationContext(), "Se agrego "+names.get(c)+" al carrito",
+                                Toast.LENGTH_SHORT).show();
+                        //Log.i("INFO","Se agrego "+names.get(c)+" al carrito");
+                        Categorias.Lista_orden.add(names.get(c));
+                        Categorias.Lista_precios.add(prices.get(c));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                })
+                .show();
+    }
     private void listaProductos(){
         for (int i =0; i<Arrayproductos.length();i++){
             try {
                 JSONObject Producto = new JSONObject(Arrayproductos.get(i).toString());
                 JSONObject Productodata  = new JSONObject(Producto.getString("product"));
-                String name = Productodata.getString("name");
-                String brand = Productodata.getString("brand");
-                String Description = Productodata.getString("description");
-                String price = Producto.getString("price");
+                name = Productodata.getString("name");
+                brand = Productodata.getString("brand");
+                Description = Productodata.getString("description");
+                price = Producto.getString("price");
                 String orden = name.toUpperCase()+"\n"+"Marca: "+brand+"\n"+"Descripcion"+Description+"\n"+"Precio: "+price+"₡";
+                names.add(name);
+                prices.add(price);
                 pdt.add(orden);
             } catch (JSONException e) {
                 e.printStackTrace();

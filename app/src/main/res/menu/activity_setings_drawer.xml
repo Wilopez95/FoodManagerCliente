@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_36dp"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_carrito"
+            android:icon="@drawable/ic_shopping_cart_black_36dp"
+            android:title="Carrito" />
+        <item
+            android:id="@+id/nav_historial"
+            android:icon="@drawable/ic_history_black_36dp"
+            android:title="Historial" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_help_black_36dp"
+            android:title="Ayuda" />
+    </group>
+
+    <item android:title="Cuenta">
+        <menu>
+            <item
+                android:id="@+id/nav_setings"
+                android:icon="@drawable/ic_build_black_36dp"
+                android:title="Configuraciones" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_exit_to_app_black_36dp"
+                android:title="Cerrar Sesion" />
+        </menu>
+    </item>
+
+</menu>

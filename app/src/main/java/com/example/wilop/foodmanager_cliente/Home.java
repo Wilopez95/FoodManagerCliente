@@ -2,6 +2,7 @@ package com.example.wilop.foodmanager_cliente;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -51,6 +52,7 @@ public class Home extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -127,13 +129,16 @@ public class Home extends AppCompatActivity
         if (id == R.id.nav_home) {
             Log.i("NAV","HOME");
         } else if (id == R.id.nav_card) {
-            Log.i("NAV","CARD");
+            Intent intent = new Intent(getApplicationContext(),Orden.class);
+            startActivity(intent);
         } else if (id == R.id.nav_historial) {
-            Log.i("NAV","HISTORIAL");
+            Intent intent = new Intent(getApplicationContext(),Historial.class);
+            startActivity(intent);
         }else if (id == R.id.nav_help) {
             Log.i("NAV","HELP");
         } else if (id == R.id.nav_setings) {
-            Log.i("NAV","SETINGS");
+            Intent intent = new Intent(getApplicationContext(),Setings.class);
+            startActivity(intent);
         }else if (id == R.id.nav_exit) {
             Log.i("NAV","EXIT");
             sharedPreferences.edit().putString("userid", "").apply();

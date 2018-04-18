@@ -3,6 +3,7 @@ package com.example.wilop.foodmanager_cliente;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,8 @@ import static com.example.wilop.foodmanager_cliente.MainActivity.sharedPreferenc
 
 public class Categorias extends AppCompatActivity {
 
+    public static ArrayList<String> Lista_orden = new ArrayList<String>();
+    public static ArrayList<String> Lista_precios = new ArrayList<String>();
 
     JSONObject MarketId;
     JSONArray productos;
@@ -39,6 +42,7 @@ public class Categorias extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categorias);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         productosbyCategory.clear();
         String marketId = sharedPreferences.getString("marketId", "");
         try {
