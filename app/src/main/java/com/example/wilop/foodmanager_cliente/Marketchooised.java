@@ -71,6 +71,8 @@ public class Marketchooised extends AppCompatActivity
         aceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Categorias.class);
+                startActivity(intent);
 
             }
         });

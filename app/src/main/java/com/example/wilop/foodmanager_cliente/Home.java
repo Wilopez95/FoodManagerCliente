@@ -149,41 +149,41 @@ public class Home extends AppCompatActivity
     }
     private void getMarkets(){
         JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, "https://food-manager.herokuapp.com/markets/", null,
-                new Response.Listener<JSONObject>()
-                {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // display response
-                        //Log.d("Response", response.toString());
-                        try{
-                            JSONObject jsonObject = new JSONObject(response.toString());
-                            arrayJSON = jsonObject.getJSONArray("products");
-                            for (int i = 0; i< arrayJSON.length(); i++){
-                                JSONObject tmpjsonObject = new JSONObject(arrayJSON.get(i).toString());
-                                String name =  tmpjsonObject.getString("name");
-                                String location =  tmpjsonObject.getString("location");
-                                mercados.add(name.toUpperCase()+"\n"+location);
-                            }
-                            List_markets.setAdapter(arrayAdapter);
-                        }catch (JSONException e) {
-                            e.printStackTrace();
+            new Response.Listener<JSONObject>()
+            {
+                @Override
+                public void onResponse(JSONObject response) {
+                    // display response
+                    //Log.d("Response", response.toString());
+                    try{
+                        JSONObject jsonObject = new JSONObject(response.toString());
+                        arrayJSON = jsonObject.getJSONArray("products");
+                        for (int i = 0; i< arrayJSON.length(); i++){
+                            JSONObject tmpjsonObject = new JSONObject(arrayJSON.get(i).toString());
+                            String name =  tmpjsonObject.getString("name");
+                            String location =  tmpjsonObject.getString("location");
+                            mercados.add(name.toUpperCase()+"\n"+location);
                         }
-
+                        List_markets.setAdapter(arrayAdapter);
+                    }catch (JSONException e) {
+                        e.printStackTrace();
                     }
 
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("Error.Response", "No hay locales");
-                    }
                 }
-        );
-        // add it to the RequestQueue
-        RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
+
+            },
+            new Response.ErrorListener()
+            {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error.Response", "No hay locales");
+                }
+            }
+    );
+    // add it to the RequestQueue
+    RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
         MyRequestQueue.add(getRequest);
-    }
+}
 
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

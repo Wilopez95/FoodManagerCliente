@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.wilop.foodmanager_cliente.Categorias">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Categorias"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="¡Seleccione una categoria!"
+            android:textAlignment="center"
+            android:textColor="?attr/colorError"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="60dp">
+
+            <GridLayout
+                android:id="@+id/gridlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp">
+
+                <LinearLayout
+                    android:id="@+id/Ly00"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="0"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/canastabasica" />
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Canasta básica "
+                        android:textAlignment="textStart"
+
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly01"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="1"
+                    android:layout_row="0"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView01"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="1"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/carnes" />
+
+                    <TextView
+                        android:id="@+id/textView01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Carnes"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly02"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="2"
+                    android:layout_row="0"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView02"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="2"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/pastas" />
+
+                    <TextView
+                        android:id="@+id/textView02"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Pastas"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly03"
+                    android:layout_width="80dp"
+                    android:layout_height="120dp"
+                    android:layout_column="3"
+                    android:layout_row="0"
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:id="@+id/imageView03"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="3"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/salsas" />
+
+                    <TextView
+                        android:id="@+id/textView03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Salsas"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/Ly10"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="0"
+                    android:layout_row="1"
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="4"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/condimentos" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Condimentos"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly11"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="1"
+                    android:layout_row="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="5"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/granos" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Granos"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly12"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="2"
+                    android:layout_row="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView12"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="6"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/lacteos" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Lácteos"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly13"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="3"
+                    android:layout_row="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView13"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:tag="7"
+                        android:onClick="ClickCategory"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/frutas" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Frustas y verduras"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly20"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="0"
+                    android:layout_row="2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView20"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="8"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/pan" />
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Pan "
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly21"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="1"
+                    android:layout_row="2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView21"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="9"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/enlatados" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Enlatados"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly22"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="2"
+                    android:layout_row="2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView22"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="10"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/snaks" />
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Snacks "
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly23"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="3"
+                    android:layout_row="2"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="11"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/golosinas" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Golosinas"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly30"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="0"
+                    android:layout_row="3"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView30"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="12"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/refrescos" />
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Refrescos"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly31"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="1"
+                    android:layout_row="3"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView31"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="13"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/higienepersonal" />
+
+                    <TextView
+                        android:id="@+id/textView31"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Higiene personal"
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly32"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="2"
+                    android:layout_row="3"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView32"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="14"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/higienehogar" />
+
+                    <TextView
+                        android:id="@+id/textView32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Productos para hogar "
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Ly33"
+                    android:layout_width="80dp"
+                    android:layout_height="125dp"
+                    android:layout_column="3"
+                    android:layout_row="3"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView33"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_weight="1"
+                        android:tag="15"
+                        android:onClick="ClickCategory"
+                        app:srcCompat="@drawable/licores" />
+
+                    <TextView
+                        android:id="@+id/textView33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        android:text="Licores "
+                        android:textAlignment="textStart" />
+                </LinearLayout>
+
+
+            </GridLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
