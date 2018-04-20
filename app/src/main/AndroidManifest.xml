@@ -28,7 +28,10 @@
             android:label="@string/title_activity_marketchooised"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Categorias" />
-        <activity android:name=".Products"></activity>
+        <activity
+            android:name=".Productos"
+            android:label="@string/title_activity_productos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

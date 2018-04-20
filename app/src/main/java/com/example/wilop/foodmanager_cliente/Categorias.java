@@ -22,6 +22,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import static com.example.wilop.foodmanager_cliente.MainActivity.sharedPreferences;
 
 public class Categorias extends AppCompatActivity {
@@ -30,16 +32,19 @@ public class Categorias extends AppCompatActivity {
     JSONObject MarketId;
     JSONArray productos;
 
+    ArrayList<JSONObject> productosbyCategory= new ArrayList<JSONObject>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categorias);
+        productosbyCategory.clear();
         String marketId = sharedPreferences.getString("marketId", "");
         try {
             MarketId = new JSONObject(marketId);
             String marketid = MarketId.getString("_id");
-            Log.d("IDMERCADDO", marketid);
+            //Log.d("IDMERCADDO", marketid);
             getProductsbymarket(marketid);
 
         } catch (JSONException e) {
@@ -52,20 +57,56 @@ public class Categorias extends AppCompatActivity {
         ImageView tag = (ImageView)view;
         String Data = tag.getTag().toString();
         if(Data.equals("0")){
-
-
-
+            selectCategory("Canasta básica");
         }else if(Data.equals("1")){
-            Log.d("TAG", "La chingada2");
+            selectCategory("Carnes");
         }else if(Data.equals("2")){
-            Log.d("TAG", "La chingada2");
+            selectCategory("Pastas");
         }else if(Data.equals("3")){
-            Log.d("TAG", "La chingada2");
+            selectCategory("Salsas");
         }else if(Data.equals("4")){
-            Log.d("TAG", "La chingada2");
+            selectCategory("Condimentos");
         }else if(Data.equals("5")){
-            Log.d("TAG", "La chingada2");
+            selectCategory("Granos");
+        }else if(Data.equals("6")){
+            selectCategory("Lácteos");
+        }else if(Data.equals("7")){
+            selectCategory("Frustas y verduras");
+        }else if(Data.equals("8")){
+            selectCategory("Pan");
+        }else if(Data.equals("9")){
+            selectCategory("Enlatados");
+        }else if(Data.equals("10")){
+            selectCategory("Snacks");
+        }else if(Data.equals("11")){
+            selectCategory("Golosinas");
+        }else if(Data.equals("12")){
+            selectCategory("Refrescos");
+        }else if(Data.equals("13")){
+            selectCategory("Higiene personal");
+        }else if(Data.equals("14")){
+            selectCategory("Productos para hogar");
+        }else if(Data.equals("15")){
+            selectCategory("Licores");
         }
+    }
+    private void selectCategory(String categoria){
+        for (int i = 0 ; i<productos.length() ;i++){
+            try {
+                JSONObject producto = new JSONObject(productos.get(i).toString());
+                JSONObject productobymarket = producto.getJSONObject("product");
+                String Category = productobymarket.getString("category");
+                if(Category.equals(categoria)){
+                    productosbyCategory.add(producto);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        sharedPreferences.edit().putString("Productosxcategoria", productosbyCategory.toString()).apply();
+        sharedPreferences.edit().putString("categoria", categoria).apply();
+        Intent intent = new Intent(getApplicationContext(),Productos.class);
+        startActivity(intent);
 
 
     }
@@ -77,17 +118,9 @@ public class Categorias extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         // display response
-                        Log.d("Response", response.toString());
                         try{
                             JSONObject jsonObject = new JSONObject(response.toString());
                             productos = jsonObject.getJSONArray("product");
-                            /*for (int i = 0; i< arrayJSON.length(); i++){
-                                JSONObject tmpjsonObject = new JSONObject(arrayJSON.get(i).toString());
-                                //String name =  tmpjsonObject.getString("name");
-                                //String location =  tmpjsonObject.getString("location");
-                                //mercados.add(name.toUpperCase()+"\n"+location);
-                            }*/
-                            //List_markets.setAdapter(arrayAdapter);
                         }catch (JSONException e) {
                             e.printStackTrace();
                         }

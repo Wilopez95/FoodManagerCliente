@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.wilop.foodmanager_cliente.Home"
-    tools:showIn="@layout/app_bar_home">
+    tools:context="com.example.wilop.foodmanager_cliente.Productos"
+    tools:showIn="@layout/activity_productos">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,11 +28,12 @@
                 app:srcCompat="@drawable/icono" />
 
             <TextView
+                android:id="@+id/category"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
-                android:text="Abastecedores"
+                android:text="none"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp"
@@ -41,12 +42,11 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/List_markets"
+            android:id="@+id/listProducts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:textAlignment="center" />
 
     </LinearLayout>
-
 </android.support.constraint.ConstraintLayout>
