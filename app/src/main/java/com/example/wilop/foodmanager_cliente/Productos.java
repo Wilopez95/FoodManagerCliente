@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.example.wilop.foodmanager_cliente.MainActivity.sharedPreferences;
+import static com.example.wilop.foodmanager_cliente.Login.sharedPreferences;
 
 public class Productos extends AppCompatActivity {
 
@@ -101,6 +100,7 @@ public class Productos extends AppCompatActivity {
                         //Log.i("INFO","Se agrego "+names.get(c)+" al carrito");
                         Categorias.Lista_orden.add(names.get(c));
                         Categorias.Lista_precios.add(prices.get(c));
+                        Categorias.Lista_producto_precio.add(names.get(c)+": "+prices.get(c)+"₡");
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -120,7 +120,7 @@ public class Productos extends AppCompatActivity {
                 brand = Productodata.getString("brand");
                 Description = Productodata.getString("description");
                 price = Producto.getString("price");
-                String orden = name.toUpperCase()+"\n"+"Marca: "+brand+"\n"+"Descripcion"+Description+"\n"+"Precio: "+price+"₡";
+                String orden = name.toUpperCase()+"\n"+"Marca: "+brand+"\n"+"Descripcion: "+Description+"\n"+"Precio: "+price+"₡";
                 names.add(name);
                 prices.add(price);
                 pdt.add(orden);

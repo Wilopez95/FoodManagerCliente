@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 
 import com.android.volley.Request;
@@ -25,12 +24,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.example.wilop.foodmanager_cliente.MainActivity.sharedPreferences;
+import static com.example.wilop.foodmanager_cliente.Login.sharedPreferences;
 
 public class Categorias extends AppCompatActivity {
 
     public static ArrayList<String> Lista_orden = new ArrayList<String>();
     public static ArrayList<String> Lista_precios = new ArrayList<String>();
+    public static ArrayList<String> Lista_producto_precio = new ArrayList<String>();
 
     JSONObject MarketId;
     JSONArray productos;
@@ -75,7 +75,7 @@ public class Categorias extends AppCompatActivity {
         }else if(Data.equals("6")){
             selectCategory("Lácteos");
         }else if(Data.equals("7")){
-            selectCategory("Frustas y verduras");
+            selectCategory("Frutas y verduras");
         }else if(Data.equals("8")){
             selectCategory("Pan");
         }else if(Data.equals("9")){

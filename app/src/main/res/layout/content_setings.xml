@@ -8,17 +8,92 @@
     tools:context="com.example.wilop.foodmanager_cliente.Setings"
     tools:showIn="@layout/app_bar_setings">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="279dp"
-        android:layout_marginEnd="148dp"
-        android:layout_marginStart="148dp"
-        android:layout_marginTop="184dp"
-        android:text="Settins"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="80dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="5dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/icono" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
+                android:text="Configuraciones "
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp"
+            android:text="Por favor ingrese los nuevos valores"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/newname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Cambiar nombre"
+            android:inputType="textMultiLine"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/errorname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Debe ingresar un nuevo nombre"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/newphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:ems="10"
+            android:hint="Cambiar numero telefonico"
+            android:inputType="phone"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/errorphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Debe ingresar un numero de telefono "
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/savename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar" />
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

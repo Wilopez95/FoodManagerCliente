@@ -95,7 +95,7 @@ public class Singup extends AppCompatActivity {
                     invalidpass.setVisibility(View.VISIBLE);
                 }else {
                     invalidpass.setVisibility(View.INVISIBLE);
-                    Singup(tname,tphone,temail,tpasw1);
+                    Singup(tname.toLowerCase(),tphone,temail,tpasw1);
                 }
             }
         });
@@ -114,7 +114,7 @@ public class Singup extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),  mensaje,
                                     Toast.LENGTH_LONG).show();
                             sendRegisterMail(email, name);
-                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(),Login.class);
                             startActivity(intent);
 
                         } catch (JSONException e) {
@@ -178,7 +178,7 @@ public class Singup extends AppCompatActivity {
                 message.setFrom(new InternetAddress(correo));
                 message.setSubject("<b>Bienvenido</b>");
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-                message.setContent(name+" Bienvenido a <b>FOOD MANAGER</b>, el lugar donde puedes realizar sus compras inteligentes.","text/html; charset=utf-8");
+                message.setContent(name+" Bienvenido a FOOD MANAGER , la app que te permite tener la tienda en tu bolsillo","text/html; charset=utf-8");
                 Transport.send(message);
             }
         }catch (Exception e){

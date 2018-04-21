@@ -1,9 +1,10 @@
 package com.example.wilop.foodmanager_cliente;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,16 +19,8 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
@@ -38,26 +31,30 @@ import com.google.android.gms.common.api.Status;
 import java.util.ArrayList;
 
 import static com.example.wilop.foodmanager_cliente.Login.sharedPreferences;
+import static java.util.Arrays.asList;
 
-public class Home extends AppCompatActivity
-
+public class Help extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.OnConnectionFailedListener {
-        JSONArray arrayJSON;
-        ArrayList<String> mercados = new ArrayList<String>();
+        ArrayList<String> opciones ;
         ArrayAdapter<String> arrayAdapter;
-        ListView List_markets;
-        public static JSONObject Choosemarket;
         GoogleApiClient googleApiClient;
+        ListView ListaOpciones;
+        TextView texto;
+        String Abastecedores = "Al entrar el usuario tendra una lista de todos los supermercados disponibles en los cuales puede realizar sus pedidos , al seleccionar un super mercado se puede ver los detalles del mismo";
+        String Categorias = "Para mayor facilidad de los clientes hemos agrupado todos los productos en categorias las cuales facilitan la busqueda de los productos";
+        String Agregar_productos = "Despues de seleccionar la categoria , los usuarios tienen una lista con todos sus productos , con solo tocarlos nos preguntara su queremos agregarlos al carrito y de esta forma llenamos nuestro carrito de productos , al finalizar podemos precionar el boton de carrito para ver nuestro pedido y sus detalles";
+        String Carrito = "Desde aqui podemos revisar nuestro pedido y confirmarlo , tenemos la informacion de los productos que pedimos asi como el monto final, antes de realizar un pedido debemos confirmar la direccion y tenemos la opcion de agregar una observacion";
+        String Quitar = "En caso que ya no queramos un producto antes de realizar el pedido podemos retirarlo de la lista , esto con solo tocarlo por un momento y tendremos la opcion de eliminarlo";
+        String Ordenar = "Una vez estemos seguros de nuestro pedido basta tocar el boton rojo que tenemos en nuetra pantalla para confirmar el pedido , reciviremos un correo donde podemos ver nuestro pedido y tambien uno cuando este listo";
+        String Historial = "Desde aqui podemos ver todos nuestros pedidos antiguos , entrar podemos ver una lista por fecha de cada pedido que se ha realizado, al tocarlo podemos ver los detalles de cada pedido";
+        String Configuraciones = "En las configuraciones el usuario puede realizar una actualizacion del telefono y del nombre, simplemente hay que poner los nuevos valores y guardar";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setContentView(R.layout.activity_help);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,6 +64,7 @@ public class Home extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        texto = findViewById(R.id.help);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -75,22 +73,56 @@ public class Home extends AppCompatActivity
                 .enableAutoManage(this,this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
-        List_markets = findViewById(R.id.List_markets);
-        getMarkets();
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,mercados);
+        ListaOpciones = findViewById(R.id.ListaAyuda);
+        opciones = new ArrayList<String>(asList("Abastecedores","Categorias","Agregar productos","Carrito","Quitar productos","Ordenar","Historial","Configuraciones"));
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,opciones);
+        ListaOpciones.setAdapter(arrayAdapter);
 
-        List_markets.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        ListaOpciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("Posision ", Integer.toString(position));
-                try {
-                    Choosemarket = new JSONObject(arrayJSON.get(position).toString());
-                    //Log.i("Choosemarket ", Choosemarket.toString());
-                    sharedPreferences.edit().putString("marketId",Choosemarket.toString() ).apply();
-                    Intent intent = new Intent(getApplicationContext(),Marketchooised.class);
-                    startActivity(intent);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
+
+                if(position ==0){
+                    ListaOpciones.setVisibility(View.INVISIBLE);
+                    texto.setText(Abastecedores);
+                    texto.setVisibility(View.VISIBLE);
+                }else if(position ==1){
+                    ListaOpciones.setVisibility(View.INVISIBLE);
+                    texto.setText(Categorias);
+                    texto.setVisibility(View.VISIBLE);
+
+                }else if(position ==2){
+                    ListaOpciones.setVisibility(View.INVISIBLE);
+                    texto.setText(Agregar_productos);
+                    texto.setVisibility(View.VISIBLE);
+
+                }else if(position ==3){
+                    ListaOpciones.setVisibility(View.INVISIBLE);
+                    texto.setText(Carrito);
+                    texto.setVisibility(View.VISIBLE);
+
+                }else if(position ==4){
+                    ListaOpciones.setVisibility(View.INVISIBLE);
+                    texto.setText(Quitar);
+                    texto.setVisibility(View.VISIBLE);
+
+                }else if(position ==5){
+                    ListaOpciones.setVisibility(View.INVISIBLE);
+                    texto.setText(Ordenar);
+                    texto.setVisibility(View.VISIBLE);
+
+                }else if(position ==6){
+                    ListaOpciones.setVisibility(View.INVISIBLE);
+                    texto.setText(Historial);
+                    texto.setVisibility(View.VISIBLE);
+
+                }else if(position ==7){
+                    ListaOpciones.setVisibility(View.INVISIBLE);
+                    texto.setText(Configuraciones);
+                    texto.setVisibility(View.VISIBLE);
+
                 }
             }
         });
@@ -110,7 +142,7 @@ public class Home extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+        getMenuInflater().inflate(R.menu.help, menu);
         return true;
     }
 
@@ -136,21 +168,20 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            Log.i("NAV","HOME");
-        } else if (id == R.id.nav_card) {
+            Intent intent = new Intent(getApplicationContext(),Home.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_carrito) {
             Intent intent = new Intent(getApplicationContext(),Orden.class);
             startActivity(intent);
-        } else if (id == R.id.nav_historial) {
+        } else if (id == R.id.nav_Historial) {
             Intent intent = new Intent(getApplicationContext(),Historial.class);
             startActivity(intent);
-        }else if (id == R.id.nav_help) {
-            Log.i("NAV","HELP");
-            Intent intent = new Intent(getApplicationContext(),Help.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_setings) {
+        } else if (id == R.id.nav_ayuda) {
+
+        } else if (id == R.id.nav_Configuraciones) {
             Intent intent = new Intent(getApplicationContext(),Setings.class);
             startActivity(intent);
-        }else if (id == R.id.nav_exit) {
+        } else if (id == R.id.nav_salir) {
             sharedPreferences.edit().putString("userid", "").apply();
             sharedPreferences.edit().putString("token", "").apply();
             sharedPreferences.edit().putString("name", "").apply();
@@ -168,7 +199,7 @@ public class Home extends AppCompatActivity
             @Override
             public void onResult(@NonNull Status status) {
                 if(status.isSuccess()){
-                        Log.i("Info", "OK");
+                    Log.i("Info", "OK");
                 }else {
                     Log.i("Info", "NOT OK");
                 }
@@ -176,56 +207,16 @@ public class Home extends AppCompatActivity
             }
         });
     }
-    private void getMarkets(){
-        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, "https://food-manager.herokuapp.com/markets/", null,
-                new Response.Listener<JSONObject>()
-                {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // display response
-                        //Log.d("Response", response.toString());
-                        try{
-                            JSONObject jsonObject = new JSONObject(response.toString());
-                            arrayJSON = jsonObject.getJSONArray("products");
-                            for (int i = 0; i< arrayJSON.length(); i++){
-                                JSONObject tmpjsonObject = new JSONObject(arrayJSON.get(i).toString());
-                                String name =  tmpjsonObject.getString("name");
-                                String location =  tmpjsonObject.getString("location");
-                                mercados.add(name.toUpperCase()+"\n"+location);
-                            }
-                            List_markets.setAdapter(arrayAdapter);
-                        }catch (JSONException e) {
-                            e.printStackTrace();
-                        }
 
-                    }
-
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("Error.Response", "No hay locales");
-                    }
-                }
-        );
-        // add it to the RequestQueue
-        RequestQueue MyRequestQueue = Volley.newRequestQueue(this);
-        MyRequestQueue.add(getRequest);
-    }
-
-
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-        }
-        return true;
-    }
+    @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+        }
+        texto.setVisibility(View.INVISIBLE);
+        ListaOpciones.setVisibility(View.VISIBLE);
+        return true;
     }
 }

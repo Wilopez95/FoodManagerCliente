@@ -66,6 +66,7 @@ public class Orden extends AppCompatActivity {
     String UserEmail;
     String MarketID;
     String Productos;
+    String Productos_Precio;
     String Direccion;
     String Precio;
     String Observacion;
@@ -89,6 +90,7 @@ public class Orden extends AppCompatActivity {
         MarketID = sharedPreferences.getString("market_Id", "");
         token =  sharedPreferences.getString("token", "");
         Productos = Categorias.Lista_orden.toString();
+        Productos_Precio = Categorias.Lista_producto_precio.toString();
         Precio = String.valueOf(calcularprecio());
         llenarOrden();
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,pedido);
@@ -221,7 +223,7 @@ public class Orden extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("userId", UserID);
                 params.put("marketId", MarketID);
-                params.put("products", Productos);
+                params.put("products", Productos_Precio);
                 params.put("address", Direccion);
                 params.put("price", Precio);
                 params.put("remark", Observacion);

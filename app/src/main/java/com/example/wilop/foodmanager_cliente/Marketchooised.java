@@ -3,9 +3,6 @@ package com.example.wilop.foodmanager_cliente;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,7 +18,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.example.wilop.foodmanager_cliente.MainActivity.sharedPreferences;
+import static com.example.wilop.foodmanager_cliente.Login.sharedPreferences;
 
 public class Marketchooised extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -127,9 +124,11 @@ public class Marketchooised extends AppCompatActivity
             Intent intent = new Intent(getApplicationContext(),Home.class);
             startActivity(intent);
         } else if (id == R.id.nav_card) {
-
+            Intent intent = new Intent(getApplicationContext(),Orden.class);
+            startActivity(intent);
         } else if (id == R.id.nav_historial) {
-
+            Intent intent = new Intent(getApplicationContext(),Historial.class);
+            startActivity(intent);
         } else if (id == R.id.nav_help) {
 
         } else if (id == R.id.nav_setings) {
@@ -139,7 +138,7 @@ public class Marketchooised extends AppCompatActivity
             sharedPreferences.edit().putString("userid", "").apply();
             sharedPreferences.edit().putString("token", "").apply();
             sharedPreferences.edit().putString("name", "").apply();
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(),Login.class);
             startActivity(intent);
         }
 
